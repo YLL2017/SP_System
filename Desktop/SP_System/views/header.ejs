@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+    <link href="stylesheets/main.css" rel="stylesheet">
+
+    <link href="stylesheets/sidebar.css" rel="stylesheet">
+
+  <head>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+              <h1 href="/">
+                主選單
+              </h1>
+              <li class="sidebar-brand">
+                <a>訂單管理</a>
+                <li>
+                 <form method="post" action="/order">
+                    <input type="submit" value="新增訂單"/>
+                  </form>
+                </li>
+                <li>
+                 <form method="post" action="/searchOrder">
+                    <input type="submit"  value="查詢訂單"/>
+                  </form>
+                </li>
+              </li>
+                <li class="sidebar-brand">
+                    <a>顧客管理</a>
+                <li>
+                    <input type="button" onclick="location.href='/searchcustomer'" id="searchcustomer" value="顧客資料"/>
+                </li>
+
+                </li>
+
+              <li class="sidebar-brand">
+                <a>統計查詢</a>
+                <li>
+                <input type="button" onclick="location.href='/result'" id="Chart" value="銷售量查詢"/>
+              </li>
+
+              </li>
+              <p class="footer"> Copyright © 106-1 產銷資訊系統</p>
+            </ul>
+          </div>
+        </div>
+
+  </head>
+
+</html>

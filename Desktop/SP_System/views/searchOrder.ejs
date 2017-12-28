@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+   <% include ./header %>
+<html>
+    <title>查詢訂單</title>
+
+    <link href="/stylesheets/main.css" rel="stylesheet">
+
+    <link href="/stylesheets/sidebar.css" rel="stylesheet">
+
+  <body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+
+          <div id="page-content-wrapper">
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">查詢訂單</h1>
+                      </div>
+                    </div>
+
+                  <!-- <div class="row">
+                      <div class="col-lg-12">
+                              <form method="post" action="/searchOrder">
+                                <p>
+                                  月：<input type="text" id="month" name="month" /></input>
+                                </p>
+                                <p>
+                                  日：<input type="text" id="date" name="month" /></input>
+                                </p>
+                                <a>
+                                  <input type="submit" value="查詢"/></input>
+                                </a>
+                              </form>
+                      </div>
+                  </div> -->
+                </div>
+                <table>
+                  <tr>
+                    <th>No</th>
+                    <th>訂單編號</th>
+                    <th>產品名稱</th>
+                    <th>數量</th>
+                    <th width=100px>動作</th>
+                  </tr>
+                  <% if(orders){
+                    for(var i = 0;i < orders.length;i++) { %>
+                      <tr>
+                        <td><%=orders[i].id%></td>
+                        <td><%=orders[i].Order_ID%></td>
+                        <td><%=orders[i].Name%></td>
+                        <td><%=orders[i].quantity%></td>
+                        <td>
+                          <a class="a-inside edit" href="../searchOrder/edit/<%=orders[i].id%>">編輯</a>
+                          <a class="a-inside delete" href="../searchOrder/delete/<%=orders[i].id%>">刪除</a>
+                        </td>
+                      </tr>
+                      <% }
+                    }else{ %>
+                      <tr>
+                        <td colspan="5" >查無結果</td>
+                      </tr>
+                      <% } %>
+                    </table>
+              </div>
+          </div>
+  </body>
+</html>

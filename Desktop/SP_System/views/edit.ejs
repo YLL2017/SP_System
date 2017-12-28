@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+   <% include ./header %>
+<html>
+    <title>編輯訂單</title>
+
+    <link href="/stylesheets/main.css" rel="stylesheet">
+
+    <link href="/stylesheets/sidebar.css" rel="stylesheet">
+
+  <body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+
+          <div id="page-content-wrapper">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <h1 class="page-header">修改訂單</h1>
+                        </div>
+                      </div>
+                      <form method="post" id=orders action="/searchOrder/edit/<%=orders[0].id%>">
+                        <p>
+                          <td class="label">訂單編號︰<%=orders[0].Order_ID%></td>
+                        </p>
+                        <p>
+                          <td class="label">產品︰
+                            <select name="Product_ID" id="Product_ID" required>
+                              <optgroup label="經典咖啡">
+                                 <option value="1">曼特寧咖啡</option>
+                                 <option value="2">巴西咖啡</option>
+                                 <option value="3">曼巴咖啡</option>
+                                 <option value="4">摩卡咖啡</option>
+                               <optgroup label="花式咖啡">
+                                 <option value="5">原味卡布奇諾</option>
+                                 <option value="6">原味拿鐵咖啡</option>
+                                 <option value="7">摩卡奇諾</option>
+                                 <option value="8">焦糖瑪奇朵</option>
+                                 <option value="9">義式濃縮</option>
+                               <optgroup label="養生花茶">
+                                 <option value="10">薰衣草</option>
+                                 <option value="11">薄荷葉</option>
+                                 <option value="12">洋甘菊</option>
+                                 <option value="13">紫羅蘭</option>
+                                 <option value="14">玫瑰花</option>
+                               </select>
+                             </td>
+                           </p>
+                           <p>
+                             <td class="label" valign="top" >數量︰
+                               <input type="text" name="quantity" id="quantity" value="<%=orders[0].quantity%>"required>
+                             </td>
+                           </p>
+                           <p>
+                             <td class="label">
+                               <input type="submit" name="submit" value="儲存訂單">
+                             </td>
+                           </p>
+                         </form>
+                       </div>
+                     </div>
+                   </div>
+
+  </body>
+</html>

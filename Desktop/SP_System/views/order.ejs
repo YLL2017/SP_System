@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+   <% include ./header %>
+<html>
+    <title>新增訂單</title>
+
+    <link href="stylesheets/main.css" rel="stylesheet">
+
+    <link href="stylesheets/sidebar.css" rel="stylesheet">
+
+  <body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+
+          <div id="page-content-wrapper">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <h1 class="page-header">新增訂單</h1>
+                        </div>
+                      </div>
+                  <div class="row">
+                      <div class="col-lg-12">
+
+                          <form method="post" action="/customer" >
+                              <p>
+                                  會員ID：
+                                  <select name="customer" >
+                                      <optgroup label="經典咖啡">
+                                          <%
+                                          for(var i = 0;i < customers_id.length;i++) { %>
+                                          　    <option value="<%=customers_id[i]%>"><%=customers_name[i]%></option>
+                                          <% }%>
+
+                                  </select>
+
+                              </p>
+                              <a>
+                                  <input type="submit" value="會員登入"/>
+                              </a>
+                          </form>
+
+                          <form method="post" action="/newOrder" id="Products">
+                            <p>
+                              產品：
+                                <select name="product">
+                                  <optgroup label="招牌系列">
+                                    <%
+                                     for(var i = 0;i < products_id.length;i++) { %>
+　                                 <option value="<%=products_id[i]%>"><%=products_name[i]%> $<%=products_price[i]%></option>
+                                           <% }%>
+
+                                         </select>
+
+                            </p>
+                            <p>
+                              數量：<input type="text" id="quantity" name="quantity" />
+                            </P>
+                            <a>
+                              <input type="submit" value="新增品項"/>
+                            </a>
+                          </form>
+                          <a>
+
+                          <form method="post" action="/order/logout">
+
+                            <input type="submit" value="完成訂單"/>
+                          </a>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+
+
+  </body>
+</html>
