@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<% include ./header %>
+<html>
+<title>顧客資料</title>
+
+<link href="/stylesheets/main.css" rel="stylesheet">
+
+<link href="/stylesheets/sidebar.css" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>$(function(){
+        // 預設顯示第一個 Tab
+        var _showTab = 0;
+        var $defaultLi = $('ul.tabs li').eq(_showTab).addClass('active');
+        $($defaultLi.find('a').attr('href')).siblings().hide();
+
+        // 當 li 頁籤被點擊時...
+        // 若要改成滑鼠移到 li 頁籤就切換時, 把 click 改成 mouseover
+        $('ul.tabs li').click(function() {
+            // 找出 li 中的超連結 href(#id)
+            var $this = $(this),
+                _clickTab = $this.find('a').attr('href');
+            // 把目前點擊到的 li 頁籤加上 .active
+            // 並把兄弟元素中有 .active 的都移除 class
+            $this.addClass('active').siblings('.active').removeClass('active');
+            // 淡入相對應的內容並隱藏兄弟元素
+            $(_clickTab).stop(false, true).fadeIn().siblings().hide();
+
+            return false;
+        }).find('a').focus(function(){
+            this.blur();
+        });
+    });</script>
+
+  <body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+
+          <div id="page-content-wrapper">
+
+
+
+
+              <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">查詢訂單</h1>
+                      </div>
+                    </div>
+
+                  <!-- <div class="row">
+                      <div class="col-lg-12">
+                              <form method="post" action="/searchOrder">
+                                <p>
+                                  月：<input type="text" id="month" name="month" /></input>
+                                </p>
+                                <p>
+                                  日：<input type="text" id="date" name="month" /></input>
+                                </p>
+                                <a>
+                                  <input type="submit" value="查詢"/></input>
+                                </a>
+                              </form>
+                      </div>
+                  </div> -->
+                </div>
+
+
+              <div class="abgne_tab">
+                  <ul class="tabs">
+                      <button><li><a href="#tab1">所有顧客資料</a></li></button>
+                      <button><li><a href="#tab2">重點推送顧客資料</a></li></button>
+                  </ul>
+
+                  <div class="tab_container">
+                      <div id="tab1" class="tab_content">
+                          <table>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>姓名</th>
+                                  <th>電子郵箱</th>
+                                  <th>電話</th>
+                                  <th>最近消費日</th>
+                                  <th>最近消費頻率</th>
+                                  <th>最近消費金額</th>
+                                  <th>RFM編碼</th>
+                              </tr>
+                              <% if(C_RFM){
+                              for(var i = 0;i < C_RFM.length;i++) { %>
+
+                              <tr>
+                                  <td><%=C_RFM[i].Customer_ID%></td>
+                                  <td><%=C_RFM[i].Name%></td>
+                                  <td><%=C_RFM[i].Email%></td>
+                                  <td><%=C_RFM[i].Phone%></td>
+                                  <td><%=C_RFM[i].Rencency%></td>
+                                  <td><%=C_RFM[i].Frequency%></td>
+                                  <td><%=C_RFM[i].Monetary%></td>
+                                  <td><%=C_RFM[i].RFM_Score%></td>
+
+                              </tr>
+
+
+                              <% }
+                              }else{ %>
+                              <tr>
+                                  <td colspan="5" >查無結果</td>
+                              </tr>
+                              <% } %>
+                          </table>
+                      </div>
+
+
+                      <div id="tab2" class="tab_content">
+
+                          <table>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>姓名</th>
+                                  <th>電子郵箱</th>
+                                  <th>電話</th>
+                                  <th>最近消費日</th>
+                                  <th>最近消費頻率</th>
+                                  <th>最近消費金額</th>
+                                  <th>RFM編碼</th>
+                              </tr>
+                              <% if(C_RFM){
+                              for(var i = 0;i < C_RFM.length;i++) { %>
+                              <% if(C_RFM[i].BEI>0){ %>
+
+                              <tr>
+                                  <td><%=C_RFM[i].Customer_ID%></td>
+                                  <td><%=C_RFM[i].Name%></td>
+                                  <td><%=C_RFM[i].Email%></td>
+                                  <td><%=C_RFM[i].Phone%></td>
+                                  <td><%=C_RFM[i].Rencency%></td>
+                                  <td><%=C_RFM[i].Frequency%></td>
+                                  <td><%=C_RFM[i].Monetary%></td>
+                                  <td><%=C_RFM[i].RFM_Score%></td>
+
+                              </tr>
+                              <% }%>
+
+                              <% }
+                              }else{ %>
+                              <tr>
+                                  <td colspan="5" >查無結果</td>
+                              </tr>
+                              <% } %>
+                          </table>
+
+                      </div>
+                  </div>
+              </div>
+
+
+              </div>
+          </div>
+  </body>
+</html>
