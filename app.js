@@ -12,6 +12,8 @@ var searchOrder = require('./routes/searchOrder');
 var result = require('./routes/result');
 var searchcustomer = require('./routes/searchCustomer');
 var customer = require('./routes/customer');
+var inventory = require('./routes/inventory');
+
 
 
 var app = express();
@@ -36,6 +38,7 @@ app.use('/searchOrder', searchOrder);
 app.use('/result', result);
 app.use('/searchcustomer',searchcustomer);
 app.use('/customer',customer);
+app.use('/inventory',inventory );
 app.get('/searchOrder/delete/:id', searchOrder);
 app.get('/searchOrder/edit/:id', searchOrder);
 // app.post('/customers/edit/:id',searchOrder);
