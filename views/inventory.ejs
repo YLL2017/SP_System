@@ -20,6 +20,13 @@
             </div>
 
         </div>
+
+        <form method="post" action="/inventory/reload">
+            <input type="submit" value="更新"/>
+        </form>
+
+
+
         <table>
             <tr>
 
@@ -27,20 +34,29 @@
                 <th>原料名稱</th>
                 <th>原料價格</th>
                 <th>現有存貨</th>
-                <th width=100px>警示指標</th>
+                <th>提前期</th>
+                <th>安全存量</th>
+                <th width=125px>警示指標</th>
             </tr>
             <% if(Materials){
-            for(var i = 0;i < Materials.length;i++) {%>
-            <td></td>
+            for(var i = 0;i < 4;i++) {%>
             <tr>
-                <td><%=Materials[i].Material_ID%></td>
-                <td><%=Materials[i].Name%></td>
-                <td><%=Materials[i].Price%></td>
-                <td><%=Materials[i].Stock%></td>
-                    <% if(Materials[i].Stock < Materials[i].Alert_Value){ %>
-                        <td><%=Materials[i].Name%>需要補貨</td>
-                    <%}else{ %>
-                        <td><%=Materials[i].Name%>不需要補貨</td>
+                <td width="33"><%=Materials[i].Material_ID%></td>
+                <td width="98.67"><%=Materials[i].Name%></td>
+                <td width="81.33"><%=Materials[i].Price%></td>
+                <td width="82.67"><%=Materials[i].Stock%></td>
+                <td width="75">4</td>
+                <td width="84"><%=Materials[i].Alert_Value%></td>
+                    
+
+                    <% if(1862 < (5000 - 523*(Materials[i].days%9)) &&  (5000 - 523*(Materials[i].days%9)) < Materials[i].Alert_Value){%>
+                        <td width="128"><font color="#FF0000"><%=Materials[i].Name%>需要補貨</font></td>
+                    
+                    <%}else if( (5000 - 523*(Materials[i].days%9)) <= 1862){%>
+                        <td width="128"><span style="color:yellow;"><%=Materials[i].Name%>補貨中</span></td>
+                    
+                    <%}else{%>
+                        <td width="128"><%=Materials[i].Name%>不需要補貨</td>
                     <%}%>
             </tr>
             <% }
@@ -50,6 +66,47 @@
             </tr>
             <% } %>
         </table>
+
+         <table>
+            <tr>
+
+                <th>No</th>
+                <th>原料名稱</th>
+                <th>原料價格</th>
+                <th>現有存貨</th>
+                <th>提前期</th>
+                <th>最佳存貨</th>
+                <th width=125px>警示指標</th>
+            </tr>
+            <% if(Materials){
+            for(var i = 4;i < Materials.length;i++) {%>
+            <tr>
+                <td width="33"><%=Materials[i].Material_ID%></td>
+                <td width="98.67"><%=Materials[i].Name%></td>
+                <td width="81.33"><%=Materials[i].Price%></td>
+                <td width="82.67"><%=Materials[i].Stock%></td>
+                <td width="75">4</td>
+                <td width="84"><%=Materials[i].Alert_Value%></td>
+                    
+
+                    <% if(149 < Materials[i].Stock && Materials[i].Stock < Materials[i].Alert_Value){%>
+                        <td width="128"><font color="#FF0000"><%=Materials[i].Name%>需要補貨</font></td>
+                    
+                    <%}else if(Materials[i].Stock <= 149){%>
+                        <td width="128"><span style="color:yellow;"><%=Materials[i].Name%>補貨中</span></td>
+                    
+                    <%}else{%>
+                        <td width="128"><%=Materials[i].Name%>不需要補貨</td>
+                    <%}%>
+            </tr>
+            <% }
+            }else{ %>
+            <tr>
+                <td colspan="5" >查無結果</td>
+            </tr>
+            <% } %>
+        </table>
+
     </div>
 </div>
 </body>
