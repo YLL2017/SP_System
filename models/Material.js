@@ -41,20 +41,21 @@ Material.getAll = function(cb) {
             cb(new GeneralErrors.Database());
         });
 }
-Material.prototype.save = function (cb) {
+Material.prototype.save = function (quantity, cb) {
     if (this.Material_ID) {
         //已存在
         db("Material")
             .where({
                 Material_ID : this.Material_ID
             })
-            .update({
+            /*.update({
                 Name : this.Name,
                 Unit : this.Unit,
                 Price:this.Price,
                 Stock:this.Stock,
                 Alert_Value:this.Alert_Value
-            })
+            })*/
+            .decrement("Stock", quantity)
             .then(function() {
 
                 cb(null, this);

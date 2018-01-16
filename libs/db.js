@@ -5,7 +5,7 @@ var knex = require('knex')({
     port     :  3306,
     user     : 'root',
     password : '',
-    database : 'project'
+    database : 'project-0104'
   },
   pool: {
     min: 0,

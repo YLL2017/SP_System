@@ -49,15 +49,16 @@
                 <td width="84"><%=Materials[i].Alert_Value%></td>
                     
 
-                    <% if(1862 < (5000 - 523*(Materials[i].days%9)) &&  (5000 - 523*(Materials[i].days%9)) < Materials[i].Alert_Value){%>
-                        <td width="128"><font color="#FF0000"><%=Materials[i].Name%>需要補貨</font></td>
-                    
-                    <%}else if( (5000 - 523*(Materials[i].days%9)) <= 1862){%>
-                        <td width="128"><span style="color:yellow;"><%=Materials[i].Name%>補貨中</span></td>
-                    
-                    <%}else{%>
-                        <td width="128"><%=Materials[i].Name%>不需要補貨</td>
-                    <%}%>
+                     <% if(1862 < (5000 - 523*(Materials[i].days%9)) &&  (5000 - 523*(Materials[i].days%9)) < Materials[i].Alert_Value){%>
+                                            <td width="128"><font color="#FF0000"><%=Materials[i].Name%>需要補貨</font></td>
+
+                                        <%}else if( (5000 - 523*(Materials[i].days%9)) <= 1862){%>
+                                            <td width="128"><span style="color:yellow;"><%=Materials[i].Name%>補貨中</span></td>
+
+                                        <%}else{%>
+                                            <td width="128"><%=Materials[i].Name%>不需要補貨</td>
+                                        <%}%>
+
             </tr>
             <% }
             }else{ %>

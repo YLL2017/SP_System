@@ -4,6 +4,7 @@ var order = require('../models/order');
 var Order_Product = require('../models/Order_Product');
 var Product = require('../models/Product');
 var Customer = require('../models/Customer');
+var Material = require('../models/Material');
 
 router.get('/', function(req, res, next) {
 
@@ -82,7 +83,28 @@ router.post('/', function(req, res, next) {
       res.status = err.code;
       res.json(err);
     } else {
-      res.redirect("/newOrder");
+        var num;
+        if(req.body.product == 1){
+            num=8;
+        } else if(req.body.product == 2){
+            num=9;
+        } else if(req.body.product == 3){
+            num=11;
+        }
+
+        for(var i=2;i<=num;i++){
+            var newMaterial = new Material({
+                Material_ID : i
+            });
+            newMaterial.save(req.body.quantity,function(err) {
+                if (err) {
+
+                    res.status = err.code;
+                    res.json(err);
+                }
+            });
+        }
+        res.redirect("/newOrder");
     }
   });
 });

@@ -12,10 +12,14 @@ var Material = require('../models/Material');
                 res.status = err.code;
                 res.json(err);
             } else {
+                /*
                 for(i=0;i<Materials.length;i++){
-                    Materials[i].Stock= 500 - 55*(Materials[i].days%9);
+                 Materials[i].Stock= 500 - 55*(Materials[i].days%9);
                     console.log(Materials[i].Stock)
-                }
+                    }
+
+                 */
+
                 res.render('inventory', { title: 'Inventory',Materials:Materials });
 
 
